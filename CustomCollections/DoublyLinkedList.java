@@ -1,9 +1,37 @@
 package CustomCollections;
 import java.util.Iterator;
 import java.util.AbstractCollection;
-import java.util.Comparator;
 
-class CustomLinkedList<T> extends AbstractCollection<T> implements Comparable {
+class DoublyLinkedList<T> extends AbstractCollection<T> implements Comparable<T> {
+
+    private Node head;
+    private Node tail;
+    private int size;
+
+    public DoublyLinkedList(){
+
+    }
+
+    private class Node{
+        private Node next;
+        private Node prev;
+
+        
+
+    }
+
+    public void add(){
+
+    }
+
+    public T delete(){
+
+        return null;
+    }
+
+    public void insert(){
+
+    }
 
     @Override
     public Iterator<T> iterator() {
@@ -35,3 +63,4 @@ class CustomLinkedList<T> extends AbstractCollection<T> implements Comparable {
         throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
     } 
 }
+
