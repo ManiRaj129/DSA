@@ -135,7 +135,7 @@ public class Sort {
 	 * traverse from both ends; switches when element greater than 
 	 * pivot found in first half and smaller element than pivot found in later half.
 	 * pivot is the first element in the list
-	 * 
+	 * element at the returned index may not be the correct one to at; i.e., not sorted position.
 	 * @param list
 	 * @param start
 	 * @param end
@@ -144,10 +144,21 @@ public class Sort {
 	private int partition_with_2pointer(int list[], int start, int end){
 		int pivot = list[start];
 		int i=start,j=end;
-		while(i >= j){
-
-		}
-		return i;
+		while(true){
+			while(list[i] < pivot){
+				i++;
+			}
+			while(list[j]> pivot){
+				j--;
+			}
+			if(i >= j){
+				//inherantly breaks the loop
+				return j;
+			}
+			int temp=list[i];
+			list[i]= list[j];
+			list[j]=temp;
+		}		
 	}
 
 
@@ -161,10 +172,19 @@ public class Sort {
 		if(end <= start){
 			return;
 		}
-		//int pivot = partition_with_sliding(list,start,end);
-		int pivot =partition_with_2pointer(list, start, end);
+		int pivot = partition_with_sliding(list,start,end);
 		quick_sort(list, start, pivot-1);
 		quick_sort(list, pivot+1, end);		
+	}
+
+	public void quick_sort_2pointer(int list[], int start, int end){
+		if(start >= end){
+			return;          
+		}
+
+		int pivot =partition_with_2pointer(list, start, end);
+		quick_sort_2pointer(list, start, pivot);
+		quick_sort_2pointer(list, pivot+1, end);
 	}
 
 	// test
@@ -176,7 +196,8 @@ public class Sort {
 		// sort.selection(list);
 		// sort.insertion(list);
 		//sort.merge_sort(list, 0, 3);
-		sort.quick_sort(list, 0, 3);
+		//sort.quick_sort(list, 0, 3);
+		sort.quick_sort_2pointer(list, 0, 3);
 		for (int num : list) {
 			System.out.print(num + ", ");
 		}
