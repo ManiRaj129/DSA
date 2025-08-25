@@ -6,6 +6,9 @@ public class Element<T> implements Cloneable, Comparable<T>{
     public Element clone(){
         Element element;
         try{
+            //each object has header: metadata, class pointer and fields: primitive and non-primitive (reference)
+            //primitive types are copied bit by bit
+            //shallow copy
            element = (Element) super.clone();
            return element;
         }catch(Exception e){
@@ -14,7 +17,7 @@ public class Element<T> implements Cloneable, Comparable<T>{
     }
 
      @Override
-    public int compareTo(Object o) {
+    public int compareTo(T item) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
     } 
